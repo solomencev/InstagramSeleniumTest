@@ -26,10 +26,7 @@ public class MainPage {
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
-//
-//    public UserPage clickSubmit() {
-//        driver.findElement(submitButton).click();
-//        return new UserPage(driver);
+
         public Object clickSubmit() {
         driver.findElement(submitButton).click();
         if (!(driver.findElement(errorAlertPassword).isDisplayed())){
