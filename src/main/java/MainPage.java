@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage {
     private WebDriver driver;
-
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -16,4 +15,21 @@ public class MainPage {
     By signUpLink = By.xpath("//*[text()='Зарегистрироваться']");
     By appStoreLink = By.xpath("//*[@alt='Доступно в Магазине приложений']");
     By googleStoreLink = By.xpath("//*[@alt='Доступно в Google Play']");
+
+    public MainPage typeUserName(String username) {
+        driver.findElement(usernameField).sendKeys(username);
+        return this;
+    }
+
+    public MainPage typeUserPassword(String password) {
+        driver.findElement(passwordField).sendKeys(password);
+        return this;
+    }
+
+    public UserPage clickSubmit() {
+        driver.findElement(submitButton).click();
+        return new UserPage(driver);
+    }
+
+
 }
