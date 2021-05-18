@@ -26,11 +26,25 @@ public class MainPage {
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
-
-    public UserPage clickSubmit() {
+//
+//    public UserPage clickSubmit() {
+//        driver.findElement(submitButton).click();
+//        return new UserPage(driver);
+        public Object clickSubmit() {
         driver.findElement(submitButton).click();
-        return new UserPage(driver);
+        if (!(driver.findElement(errorAlertPassword).isDisplayed())){
+            return new UserPage(driver);
+            }
+        else {
+            driver.findElement(errorAlertPassword).getText();
+            return this;
+        }
 
+
+    }
+
+    public String ErrorAlert() {
+        return driver.findElement(errorAlertPassword).getText();
 
     }
 

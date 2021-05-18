@@ -11,5 +11,10 @@ public class UserPage {
         this.driver = driver;
     }
 
-    By directButton = By.xpath("//*[@aria-label='Messenger']");
+    By directButton = By.xpath("//*[text()='Поиск']");
+
+    public String successLogin(){
+        return driver.findElement(directButton).getText();
+
+    }
 }
