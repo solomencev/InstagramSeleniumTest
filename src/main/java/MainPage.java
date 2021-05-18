@@ -15,6 +15,7 @@ public class MainPage {
     By signUpLink = By.xpath("//*[text()='Зарегистрироваться']");
     By appStoreLink = By.xpath("//*[@alt='Доступно в Магазине приложений']");
     By googleStoreLink = By.xpath("//*[@alt='Доступно в Google Play']");
+    By errorAlertPassword = By.xpath("//*[@id='slfErrorAlert']");
 
     public MainPage typeUserName(String username) {
         driver.findElement(usernameField).sendKeys(username);
@@ -29,6 +30,16 @@ public class MainPage {
     public UserPage clickSubmit() {
         driver.findElement(submitButton).click();
         return new UserPage(driver);
+
+
+    }
+
+    public String loginWrongCredential(String username, String password) {
+        driver.findElement(usernameField).sendKeys(username);
+        driver.findElement(passwordField).sendKeys(password);
+        driver.findElement(submitButton).click();
+        String message = driver.findElement(errorAlertPassword).getText();
+        return message;
     }
 
 

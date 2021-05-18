@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -25,15 +26,22 @@ public class MainPageTest {
 
     @Test
     public void MainPageLoginUser() {
-        mainPage.typeUserName("test");
-        mainPage.typeUserPassword("testing");
+        mainPage.typeUserName("divova8174@dvdoto.com");
+        mainPage.typeUserPassword("Qwerty1!");
         mainPage.clickSubmit();
 
-        System.out.println("fdg");
+    }
+
+    @Test
+    public void MainPageLoginUserWrongCredential() {
+       String wrongPassword = mainPage.loginWrongCredential("username", "password");
+       Assert.assertEquals("К сожалению, вы ввели неправильный пароль. Проверьте свой пароль еще раз.", wrongPassword);
+
     }
 
     @After
     public void tearDown() {
+
         driver.quit();
     }
 }
