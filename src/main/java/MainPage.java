@@ -18,9 +18,9 @@ public class MainPage {
     By errorAlertPassword = By.xpath("//*[@id='slfErrorAlert']");
     By form = By.xpath("//*[@class='gr27e  ']");
 
-    public MainPage form() {
-        driver.findElement(form).isDisplayed();
-        return this;
+    public Boolean submitEmptyFields() {
+        return !driver.findElement(submitButton).isEnabled();
+
     }
 
     public MainPage typeUserName(String username) {
@@ -38,19 +38,11 @@ public class MainPage {
         return new UserPage(driver);
     }
 
-
-
     public String ErrorAlert() {
         return driver.findElement(errorAlertPassword).getText();
     }
 
-    public String loginWrongCredential(String username, String password) {
-        driver.findElement(usernameField).sendKeys(username);
-        driver.findElement(passwordField).sendKeys(password);
-        driver.findElement(submitButton).click();
-        String message = driver.findElement(errorAlertPassword).getText();
-        return message;
-    }
+
 
 
 }

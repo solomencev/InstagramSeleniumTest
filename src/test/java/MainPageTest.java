@@ -25,28 +25,31 @@ public class MainPageTest {
     }
 
     @Test
-    public void  MainPageLoginUserTest() {
+    public void MainPageLoginUserTest() {
         mainPage.typeUserName("divova8174@dvdoto.com");
         mainPage.typeUserPassword("Qwerty1!");
         mainPage.clickSubmit();
-        Assert.assertEquals(false,  userPage.successLogin());
+        Assert.assertEquals(false, userPage.successLogin());
 
     }
 
     @Test
-    public void MainPageWrongLoginPasswordTest() {
-        mainPage.typeUserName("divov74@dvdoto.com");
-        mainPage.typeUserPassword("Qwey1!");
-        mainPage.clickSubmit();
-        Assert.assertEquals("Введенное вами имя пользователя не принадлежит аккаунту. Проверьте свое имя пользователя и повторите попытку.", mainPage.ErrorAlert());
-
+    public void MainPageClickabilitySubmitEmptyFieldTest() {
+        mainPage.typeUserName("");
+        mainPage.typeUserPassword("");
+        Assert.assertEquals(true, mainPage.submitEmptyFields());
     }
 
-
+    @Test
+    public void MainPageWrongLoginPasswordTest() {
+        mainPage.typeUserName("Test@test.com");
+        mainPage.typeUserPassword("Qwey1!");
+        mainPage.clickSubmit();
+        Assert.assertEquals("К сожалению, вы ввели неправильный пароль. Проверьте свой пароль еще раз.", mainPage.ErrorAlert());
+    }
 
     @After
     public void tearDown() {
-
         driver.quit();
     }
 }
