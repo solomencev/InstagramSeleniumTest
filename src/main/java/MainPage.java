@@ -16,6 +16,12 @@ public class MainPage {
     By appStoreLink = By.xpath("//*[@alt='Доступно в Магазине приложений']");
     By googleStoreLink = By.xpath("//*[@alt='Доступно в Google Play']");
     By errorAlertPassword = By.xpath("//*[@id='slfErrorAlert']");
+    By form = By.xpath("//*[@class='gr27e  ']");
+
+    public MainPage form() {
+        driver.findElement(form).isDisplayed();
+        return this;
+    }
 
     public MainPage typeUserName(String username) {
         driver.findElement(usernameField).sendKeys(username);
@@ -27,22 +33,15 @@ public class MainPage {
         return this;
     }
 
-        public Object clickSubmit() {
+    public Object clickSubmit() {
         driver.findElement(submitButton).click();
-        if (!(driver.findElement(errorAlertPassword).isDisplayed())){
-            return new UserPage(driver);
-            }
-        else {
-            driver.findElement(errorAlertPassword).getText();
-            return this;
-        }
-
-
+        return new UserPage(driver);
     }
+
+
 
     public String ErrorAlert() {
         return driver.findElement(errorAlertPassword).getText();
-
     }
 
     public String loginWrongCredential(String username, String password) {

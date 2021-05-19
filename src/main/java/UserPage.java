@@ -11,10 +11,12 @@ public class UserPage {
         this.driver = driver;
     }
 
-    By directButton = By.xpath("//*[text()='Поиск']");
+    By searchField = By.xpath("//*[text()='Поиск']");
+    By form = By.xpath("//*[@class='gr27e  ']");
 
-    public String successLogin(){
-        return driver.findElement(directButton).getText();
+    public Boolean successLogin(){
+        return !driver.findElement(form).isDisplayed();
+
 
     }
 }
